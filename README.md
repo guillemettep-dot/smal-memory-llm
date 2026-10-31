@@ -52,25 +52,6 @@ Paths are hard-coded to the machine the run lives on (`/home/paul/memprobe` for 
 checkpoints); `MEMPROBE_ROOT` overrides the root in the scripts that read it. `run_sh25.sh` resumes from a checkpoint;
 to train from scratch, start from `run_sh22.sh`, the last from-scratch arm.
 
-## Results so far
-
-Needle test: a fact ("The access code for X is ...") is planted N tokens before a cue, 256 trials per distance with
-a fixed seed, scored on **answer digits recalled** (a different-fact control scores ~0%). Paired bootstrap,
-Bonferroni bar p < 0.0083.
-
-| distance (tokens) | 64 | 128 | 256 | 512 | 768 | 1024 |
-|---|---|---|---|---|---|---|
-| sh25 @ 20k | 41.1 | 36.7 | 27.1 | 18.6 | 8.1 | 3.8 |
-| sh25 @ 22k | 42.3 | 38.3 | 26.5 | 15.5 | 6.3 | 3.0 |
-| sh25 @ 24k | 42.1 | 36.8 | 25.3 | 14.7 | 4.8 | 2.6 |
-| sh23 @ 9k (parent) | 21.2 | 20.4 | 15.6 | 8.0 | 1.9 | 0.4 |
-
-At step 20k, sh25 beat every earlier arm at every distance. After the learning rate was halved (5e-5 -> 2.5e-5 at
-step 20,195), short-range recall held but 512 and 768 fell significantly (24k vs 20k: -3.9 and -3.3 points,
-p = 0.0003). The state just before the halving is kept so the run can go back to it.
-
-Training is ongoing (step ~26k of 152,587, ~4,200 tokens/s on the 3060).
-
 ## License
 
 No license has been chosen yet, so default copyright applies.
